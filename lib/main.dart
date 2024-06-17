@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:newproject/pages/homepage.dart';
+import 'package:newproject/pages/intropage.dart';
 
 
 void main() {
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {  
-   return     MaterialApp(
+   return    const MaterialApp(
        debugShowCheckedModeBanner: false,
-      home:  Homepage()
+      home:  Intropage()
   
       
      
