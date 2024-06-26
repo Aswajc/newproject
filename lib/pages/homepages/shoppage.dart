@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:newproject/components/shoetile.dart';
+import 'package:newproject/models/cart.dart';
 import 'package:newproject/models/shoe.dart';
+import 'package:provider/provider.dart';
 
-class Home1page extends StatelessWidget {
+class Home1page extends StatefulWidget {
   const Home1page({super.key});
 
   @override
+  State<Home1page> createState() => _Home1pageState();
+}
+
+class _Home1pageState extends State<Home1page> {
+
+  void addToCart(Shoe shoe){
+    Provider.of<Cart>(context ,listen: false).addToCart(shoe);
+    
+
+    showDialog(context: context, builder:(context) => AlertDialog(
+      title: Text('successfully added'),
+      content:Text ('check cart'),
+
+    ),);
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-     backgroundColor: Colors.grey[200],
-     
-      body:  Column(
+    return  Consumer<Cart>(
+      builder:(context, value, child) =>Column(
        //search bar
        children: [
                   Container(
@@ -36,7 +54,8 @@ class Home1page extends StatelessWidget {
               color: Colors.grey
              ),),
            ),
-
+          
+         
        //images
       const Padding(
         padding: EdgeInsets.all(25.0),
@@ -61,15 +80,16 @@ class Home1page extends StatelessWidget {
         
         itemBuilder: (context,index){
 
-        Shoe shoe=Shoe(name: 'Nike', price: '200', description: 'The best seller', imagepath: 'lib/images/shoe2.png');
+        Shoe shoe=value.getShoeList()[index];
       return Shoetile(
-        shoe:shoe ,
+        shoe:shoe, 
+        onTap:() => addToCart(shoe),
       );
       })
       ),
 
-      Padding(
-        padding: const EdgeInsets.only(top: 30,left: 25,right: 25),
+      const Padding(
+        padding: EdgeInsets.only(top: 30,left: 25,right: 25),
         child: Divider(
           color: Colors.white,
         ),
@@ -77,10 +97,7 @@ class Home1page extends StatelessWidget {
 
 
         
-       ],
-
-      
-       
+       ],  
         
       )
     );

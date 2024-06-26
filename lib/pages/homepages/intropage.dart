@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:newproject/pages/homepage.dart';
+import 'package:newproject/pages/homepages/homepage.dart';
+import 'package:newproject/pages/homepages/shoppage.dart';
+import 'package:newproject/pages/loginpages/loginpage.dart';
 
 class Intropage extends StatelessWidget {
   const Intropage({super.key});
@@ -40,7 +42,7 @@ class Intropage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20,right: 20),
             child: GestureDetector(
-              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context)=>const Homepage())),
+              onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context)=> Loginpage())),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),

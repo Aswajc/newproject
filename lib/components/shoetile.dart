@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:newproject/models/shoe.dart';
 
+// ignore: must_be_immutable
 class Shoetile extends StatelessWidget {
   Shoe shoe;
-   Shoetile({super.key,required this.shoe});
+  void Function()? onTap;
+   Shoetile({super.key,required this.shoe,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -28,31 +30,32 @@ class Shoetile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Text(shoe.name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-                ),
-                Text('\$'+ shoe.price,style: const TextStyle(fontWeight: FontWeight.bold,),),
-            
-              ]
+            Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: Column(
+                children: [
                
-            ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
-                color: Colors.black
+                Text(shoe.name,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+               
+                  
+                  Text('\$${shoe.price}',style: const TextStyle(fontWeight: FontWeight.bold,),),
+              
+                ]
+                 
               ),
-              child: const Icon(Icons.add,color: Colors.white,))
+            ),
+            GestureDetector(
+              onTap: onTap,
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20)),
+                  color: Colors.black
+                ),
+                child: const Icon(Icons.add,color: Colors.white,)),
+            )
 
           ],)
-
-           //price
-          
-
-           //add cart
 
           
         ],

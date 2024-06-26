@@ -1,8 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:newproject/pages/homepage.dart';
-import 'package:newproject/pages/intropage.dart';
+import 'package:newproject/models/cart.dart';
+import 'package:newproject/pages/homepages/intropage.dart';
+import 'package:provider/provider.dart';
 
 
 void main() {
@@ -17,13 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {  
-   return    const MaterialApp(
+   return   ChangeNotifierProvider(create:(context) => Cart(),
+   child:  const MaterialApp(
        debugShowCheckedModeBanner: false,
       home:  Intropage()
-  
-      
-     
-      );
+      ),);
     }
    
   }
